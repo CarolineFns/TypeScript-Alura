@@ -1,0 +1,13 @@
+tsd -> TypeScript Declaration File, arquivo possui informações dos nomes de métodos e funções, inclusive tipos que podem ser utilizados pelo TypeScript
+
+npm install @types/nomeDaLibOuFramework --save-dev
+
+npm install @types/jquery --save-dev
+npm install @types/lodash --save-dev
+npm install @types/underscore --save-dev
+
+"removeComments": true no arquivo tsconfig.json.
+
+
+
+

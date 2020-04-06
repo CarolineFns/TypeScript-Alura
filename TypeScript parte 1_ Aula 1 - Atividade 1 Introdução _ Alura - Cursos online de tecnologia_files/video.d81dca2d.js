@@ -1,0 +1,1 @@
+$(".transcription-toggle").on("click",function(){$(".video-transcription").removeClass("video-transcription--inactive"),$(".video-transcription-button").hide(),sticky.recalc()});
