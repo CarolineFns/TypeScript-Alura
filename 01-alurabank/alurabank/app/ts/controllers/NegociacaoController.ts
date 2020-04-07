@@ -2,6 +2,7 @@ import { NegociacoesView, MensagemView} from '../views/index';
 import { Negociacoes, Negociacao, NegociacaoParcial } from '../models/index';
 import { logarTempoDeExecucao, domInject, throttle } from '../helpers/decorators/index';
 import { NegociacaoService } from '../service/index';
+import { imprime } from '../helpers/Utils';
 
 export class NegociacaoController {
 
@@ -40,6 +41,8 @@ export class NegociacaoController {
         );
 
         this._negociacoes.adiciona(negociacao);
+
+        imprime(negociacao, this._negociacoes);
 
         // depois de adicionar, atualiza a view novamente para refletir os dados
         this._negociacoesView.update(this._negociacoes);
