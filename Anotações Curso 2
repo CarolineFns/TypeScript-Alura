@@ -1,0 +1,92 @@
+-> namespace: recursos disponível de autocomplete de classes no typescript, agrupando a classe dentro de um mesmo nomespace e acessá-las através dele. É necessário colocar namespace e o nome do namespace dentro de {} e na classe colocar o export.
+
+        "module": "system" -> colocar isso no arquivo tsconfig.json para indicar para o typescript que ele deve usar o sistema de módulos do System.js
+
+    <script src="lib/system.js"></script>
+
+ <script>
+         System.defaultJSExtensions = true;
+        System.import('js/app.js').catch(err => console.error(err));
+    </script>
+
+ loader de módulos - > É o responsável pelo carregamento do módulo principal da aplicação. A partir desse módulo todas as suas dependências são resolvidas dinamicamente, sem a necessidade de termos que importar cada script individualmente seguindo uma ordem de importação definida.
+É um script que é carregado diretamente no browser.
+
+npm install lite-server@2.3.0 --save-dev
+npm install concurrently@3.4.0 --save-dev 
+
+"watch": "tsc -w",
+    "server": "lite-server --baseDir=app",
+    "start": "concurrently \"npm run watch\" \"npm run server\""
+
+estratégia Barrel (barril) -> estratégia para simplificar exportação dos módulos
+// app/ts/views/index.ts
+export * from './View'; 
+Um barril, ou barrel no inglês é uma maneira de centralizarmos em um único módulo a importação de outros módulos.
+
+readonly -> tipo não permite modificar os atributos
+
+template.replace(/<script>[\s\S]*?<\/script>/, ''); -> dá replace nas tags script
+
+constructor(seletor: string, escapar?: boolean) {}  -> torna o parametro opcional. Porém depois de um parametro opcional não pode ter outros parametros obrigatórios
+
+strictNullChecks -> não deixa colocar variaveis null e undefined
+
+constructor(seletor: string, escapar: boolean = false) {}  -> assume o valor false caso escapar venha null or undefined
+
+function minhaFuncao(flag: boolean): boolean | null{} -> pode definiar que uma função pode retornar ou boolean ou null
+
+declarando enums: eles começam por default o valor 0 se não declararmos:
+enum DiaDaSemana {
+    Domingo, 
+    Segunda, 
+    Terca, 
+    Quarta, 
+    Quinta, 
+    Sexta, 
+    Sabado
+}
+
+ const t2 = performance.now();
+
+Isolar requisitos funcionais através de decorators
+
+
+ "experimentalDecorators": true -> permite utilizar decorators
+
+export function logarTempoDeExecucao() { return function(target: any, propertyKey: string, descriptor: PropertyDescriptor) {}} 
+
+target é aquele que possui uma referência para o elemento cujo método foi decorado por logarTempoDeExecucao 
+
+O segundo parâmetro é uma string que nos retorna o nome do método decorado
+
+descriptor nos dará acesso ao método que desejamos modificar sua execução, através de descriptor.value.Nos dá acesso a implementação do método decorado através de descritor.value.
+
+function(...args: any[]) ---> usamos ... para indicar um REST PARAMETER, algo que não é exclusivo do TypeScript, mas do ES2015:
+
+${JSON.stringify(resultado)} -> Se for um objeto isso faz com que exiba bonitinho
+
+    @domInject('#data')
+    private _inputData: JQuery;
+
+ lazy loading -> Só carrega as propriedade quando eu preciso, carregamento preguiçoso
+
+Object.defineProperty(target, key, {
+           get: getter
+       });
+
+API fetch  usa o padrão de projeto Promise. Por usar Promise, seu uso é mais simplificado do que trabalharmos com XMLHttpRequest. 
+Faz parte do ecmascript
+
+Interfaces => não são instanciadas
+
+clearInterval(timer);  timer = setTimeout(() => metodoOriginal.apply(this, args), milissegundos); => temporizador
+
+utiliza extends quando tenho métodos prontos para agregar na classe, fora isso não há necessidade, pq só posso estender uma classe, ai estaria desperdiçando uma outra classe que se pode estender.
+Se eu não quero passar método prontos, mas sim obrigar a classe a implementar algum método, eu utilizo uma interface que faz mais sentido.
+
+eu posso exportar function, class abstratc, interface etc
+
+export interface Imprimivel {   paraTexto(): void; }
+
+export abstract class Imprimivel {  abstract paraTexto(): void; }
