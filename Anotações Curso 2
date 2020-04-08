@@ -96,4 +96,10 @@ interfaces pode extender de quantas classes quiserem, diferente de classes, por 
 
 npm install @types/node --save-dev
 
+TypeScript se baseia no ES2015, todavia, na versão ES2017 foi introduzida a sintaxe async/await -> Usado para tratar promisses.
+
+Por padrão, capturamos o retorno de uma promise dentro da função then. Mas se dentro de uma função async, usamos a instrução await antes da chamada de um método que retorne uma promise, podemos capturar seu retorno sem a necessidade da chamada de then, como se ela fosse uma função síncrona tradicional.
+
+
+
 

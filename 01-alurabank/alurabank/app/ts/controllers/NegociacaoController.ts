@@ -56,17 +56,18 @@ export class NegociacaoController {
     }
 
     @throttle()
-    importarDados(){
-
-        this._service
-        .obterNegociacoes(res => {
-            if (res.ok)
-                return res;
-            else {
-                throw new Error(res.statusText);
-            }
-        })
-        .then(negociacoesParaImportar => {
+    async importarDados(){
+        
+        // usou await antes da chamada de this.service.obterNegociacoes()
+        try {
+            const negociacoesParaImportar = await this._service
+            .obterNegociacoes(res => {
+                if (res.ok)
+                    return res;
+                else {
+                    throw new Error(res.statusText);
+                }
+            });
 
             const negociacoesJaImportadas = this._negociacoes.paraArray();
 
@@ -77,26 +78,12 @@ export class NegociacaoController {
                         .forEach(negociacao => this._negociacoes.adiciona(negociacao));
             
             this._negociacoesView.update(this._negociacoes);
-        }).catch((err: Error) => {
+
+        } catch{
             this._mensagemView.update('Não foi possível importar os dados.');
-            console.log(err.message);
-        });
+        }
     }
 }
-
-/*.then(negociacoesParaImportar => {
-
-    const negociacoesJaImportadas = this._negociacoes.paraArray();
-
-    negociacoesParaImportar
-        .filter(negociacao => 
-            !negociacoesJaImportadas.some(jaImportada => 
-                negociacao.ehIgual(jaImportada)))
-        .forEach(negociacao => 
-        this._negociacoes.adiciona(negociacao));
-
-    this._negociacoesView.update(this._negociacoes);
-});*/
 
 enum DiaDaSemana {
     Domingo,
