@@ -90,3 +90,10 @@ eu posso exportar function, class abstratc, interface etc
 export interface Imprimivel {   paraTexto(): void; }
 
 export abstract class Imprimivel {  abstract paraTexto(): void; }
+
+interfaces pode extender de quantas classes quiserem, diferente de classes, por isso podemos criar uma interface que extends as classes que queremos e utilizar somente elas, e uma interface pode extender outras interfaces.
+
+
+npm install @types/node --save-dev
+
+
